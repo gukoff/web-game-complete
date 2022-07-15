@@ -35,6 +35,7 @@
 3. Create a webapp
 
     ```sh
+    cd .. # into the /app folder
     az webapp up --runtime PYTHON:3.9 --sku B1 --logs
     ```
 
