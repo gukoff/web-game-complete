@@ -1,6 +1,5 @@
 # web-game-complete
 
-
 1. Run frontend
     ```sh
     cd app/frontend
@@ -36,7 +35,8 @@
 
     ```sh
     cd .. # into the /app folder
-    az webapp up --runtime PYTHON:3.9 --sku B1 --logs
+    SITE_PREFIX=<your_inititals>
+    az webapp up --runtime PYTHON:3.9 --sku B1 --logs --name ${SITE_PREFIX}-sjf-gamesite
     ```
 
     > [!NOTE]
