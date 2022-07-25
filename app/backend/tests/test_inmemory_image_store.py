@@ -10,4 +10,4 @@ class TestInMemoryImageStore():
         store = InMemoryImageStore()
         image = ("base64image", "a cat")
         store.store_image(image[0], image[1])
-        assert store.get_random_image() == image
+        assert store.get_random_image()[1] == image[0]

@@ -1,15 +1,23 @@
 import random
+import uuid
 
 class InMemoryImageStore:
     """
         InMemory store to store images.
     """
-    images = []
+
+    def __init__(self):
+        # tuple of base64 image content and image description, indexed by id.
+        self.images = {}
 
     def store_image(self, image_content: bytes, image_description: str):
         """ Store an image and description."""
-        self.images.append((image_content, image_description))
+        image_id = uuid.uuid1()
+        self.images[image_id] = (image_content, image_description)
 
     def get_random_image(self):
         """ Get a random image."""
-        return random.choice(self.images) if len(self.images) else None
+        if len(self.images.keys()) == 0: 
+            return None
+        image_id = random.choice(list(self.images.keys()))
+        return (image_id, self.images[image_id][0])
