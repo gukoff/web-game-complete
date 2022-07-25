@@ -1,12 +1,14 @@
-from store.inmemory_image_store import InMemoryImageStore
+from app.backend.store.inmemory_image_store import InMemoryImageStore
 
 class TestInMemoryImageStore():
 
-    def test_get_random_image_when_empty_store(self):
+    @staticmethod
+    def test_get_random_image_when_empty_store():
         store = InMemoryImageStore()
         assert store.get_random_image() == None
 
-    def test_get_random_image_when_one_image(self):
+    @staticmethod
+    def test_get_random_image_when_one_image():
         store = InMemoryImageStore()
         image = ("base64image", "a cat")
         store.store_image(image[0], image[1])
