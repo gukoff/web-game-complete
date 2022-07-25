@@ -1,4 +1,3 @@
-from email.mime import image
 from app.backend.store.inmemory_image_store import InMemoryImageStore
 
 class TestInMemoryImageStore():
