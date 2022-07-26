@@ -17,7 +17,7 @@ class InMemoryImageStore:
 
     def get_random_image(self):
         """ Get a random image."""
-        if len(self.images.keys()) == 0: 
+        if not images: 
             return None
         image_id = random.choice(list(self.images.keys()))
         return (image_id, self.images[image_id][0])
