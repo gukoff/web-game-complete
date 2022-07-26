@@ -17,14 +17,14 @@ class InMemoryImageStore:
 
     def get_random_image(self):
         """ Get a random image."""
-        if not images: 
+        if not self.images:
             return None
         image_id = random.choice(list(self.images.keys()))
-        image_content, image_description = self.images[image_id]
+        image_content, _ = self.images[image_id]
         return (image_id, image_content)
 
     def get_image_description(self, image_id):
         if image_id not in self.images:
             return None
-        image_content, image_description = self.images[image_id]
+        _, image_description = self.images[image_id]
         return image_description
