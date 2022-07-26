@@ -15,7 +15,7 @@ jobs:
 
       - name: Install dependencies
         run: | 
-          cd app/backend
+          cd app
           pip install -r requirements.txt 
 
       - name: Lint python
