@@ -20,7 +20,8 @@ class InMemoryImageStore:
         if not images: 
             return None
         image_id = random.choice(list(self.images.keys()))
-        return (image_id, self.images[image_id][0])
+        image_content, image_description = self.images[image_id]
+        return (image_id, image_content)
 
     def get_image_description(self, image_id):
         image = self.images.get(image_id)
