@@ -24,5 +24,7 @@ class InMemoryImageStore:
         return (image_id, image_content)
 
     def get_image_description(self, image_id):
-        image = self.images.get(image_id)
-        return None if image is None else image[1]
+        if image_id not in self.images:
+            return None
+        image_content, image_description = self.images[image_id]
+        return image_description
