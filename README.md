@@ -1,37 +1,23 @@
 # web-game-complete
 
-1. Run frontend
-    ```sh
-    cd app/frontend
-    npm run dev
-    ```
-
-2. Run backend
+1. Run application
 
     ```sh
-    cd app/backend
+    cd app
     pip install -r requirements.txt
-    cd ..
     FLASK_DEBUG=1 flask run
+    python app.py
     ```
-
 
 ## Deploy
 
-1. Compile frontend dist
-
-    ```sh
-    cd app/frontend
-    npm run build
-    ```
-
-2. Login to Azure CLI
+1. Login to Azure CLI
 
     ```sh
     az login
     ```
 
-3. Create a webapp
+2. Create a webapp
 
     ```sh
     cd .. # into the /app folder
@@ -42,7 +28,7 @@
     > [!NOTE]
     > The `az webapp up` command does the following actions:
     >
-    >- Create a default [resource group](/cli/azure/group#az-group-create). (randmoly generated)
+    >- Create a default [resource group](/cli/azure/group#az-group-create). (randomly generated)
     >
     >- Create a default [App Service plan](/cli/azure/appservice/plan#az-appservice-plan-create).
     >

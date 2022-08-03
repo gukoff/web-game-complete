@@ -15,11 +15,11 @@ jobs:
 
       - name: Install dependencies
         run: | 
-          cd app/backend
+          cd app
           pip install -r requirements.txt 
 
       - name: Lint python
         run: pylint --disable=C app/
       
       - name: Run tests
-        run: pytest
+        run: pytest ./app/tests/
