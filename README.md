@@ -6,7 +6,6 @@
     cd app
     pip install -r requirements.txt
     FLASK_DEBUG=1 flask run
-    python app.py
     ```
 
 ## Deploy
