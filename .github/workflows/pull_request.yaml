@@ -15,7 +15,7 @@ jobs:
 
       - name: Install dependencies
         run: | 
-          cd app
+          cd src/99_complete_app
           pip install -r requirements.txt 
 
       - name: Lint python
