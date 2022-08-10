@@ -25,7 +25,8 @@ class InMemoryStorage:
 
     def get_guess_secret(self, key):
         """ Get a guess secret."""
-        if (key not in self.storage):
+        """ Get an image description."""
+        if (key < 0 or key > len(self.storage) - 1):
             return None
         _, guess_secret = self.storage[key]
         return guess_secret
