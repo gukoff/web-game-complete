@@ -1,7 +1,6 @@
 from inspect import _void
 import random
 
-
 class InMemoryStorage:
     """
         InMemory store to store images and their guess descriptions.
