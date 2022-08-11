@@ -15,11 +15,11 @@ jobs:
 
       - name: Install dependencies
         run: | 
-          cd app
+          cd src/99_complete_app
           pip install -r requirements.txt 
 
       - name: Lint python
-        run: pylint --disable=C app/
+        run: pylint --disable=C,R0801 src/ 
       
       - name: Run tests
-        run: pytest ./app/tests/
+        run: pytest ./src/
