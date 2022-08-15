@@ -6,7 +6,7 @@ In the first stage we're going to create a python web API with [Flask](https://f
 
     >To be able to build the API, we first need to get the package of API we'll be using.
 
-    1. Create a `requirements.txt` file in the `src` folder
+    1. Create a `requirements.txt` file in the `src/` folder
 
         ```sh
         touch requirements.txt
@@ -26,7 +26,7 @@ In the first stage we're going to create a python web API with [Flask](https://f
 
 2. Create the contents of the API
 
-    1. Create an `app.py` in the `src` folder file with the contents of
+    1. Create an `app.py` in the `src/` folder file with the contents of
 
         ```python
         from flask import Flask
@@ -42,7 +42,7 @@ In the first stage we're going to create a python web API with [Flask](https://f
             app.run(debug=True)
         ```
 
-3. Run the API
+3. Run the API from the `src/` folder
 
     ```sh
     FLASK_DEBUG=1 flask run

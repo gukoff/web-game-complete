@@ -2,7 +2,7 @@
 
 TODO: write intro
 
-## Setting up the enviroment
+## Setting up the environment
 
 TODO: write intro on how to clone the repo
 
