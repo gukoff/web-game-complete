@@ -39,7 +39,7 @@ In the second stage we're going to add two new pages `/guess` and `/upload_image
         </html>
          ```
 
-    2. Add a new global constant and modify the return value of `\` endpoint in `app.py`
+    2. Add a new global constant and modify the return value of `\` endpoint in `api.py`
 
         ```python
 

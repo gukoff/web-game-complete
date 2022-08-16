@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: Flask",
+            "name": "03_in_memory_storage",
             "type": "python",
             "request": "launch",
             "module": "flask",

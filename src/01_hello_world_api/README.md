@@ -26,7 +26,7 @@ In the first stage we're going to create a python web API with [Flask](https://f
 
 2. Create the contents of the API
 
-    1. Create an `app.py` in the `src/` folder file with the contents of
+    1. Create an `api.py` in the `src/` folder file with the contents of
 
         ```python
         from flask import Flask
@@ -42,10 +42,16 @@ In the first stage we're going to create a python web API with [Flask](https://f
             app.run(debug=True)
         ```
 
-3. Run the API from the `src/` folder
+3. In the root of the project (one level above `src`) create `app.py`
+
+    ```py
+    from src.app import app  # pylint: disable=unused-import
+    ```
+
+4. Run the API from the project root folder folder
 
     ```sh
     FLASK_DEBUG=1 flask run
     ```
 
-4. Navigate to the url that the API is running at from the output of the previous command
+5. Navigate to the url that the API is running at from the output of the previous command

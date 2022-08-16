@@ -19,9 +19,9 @@
 2. Create a webapp
 
     ```sh
-    cd .. # into the /app folder
+    cd src/99_complete_app
     SITE_PREFIX=<your_inititals>
-    az webapp up --runtime PYTHON:3.9 --sku B1 --logs --name ${SITE_PREFIX}-sjf-gamesite
+    az webapp up --runtime PYTHON:3.9 --sku FREE --logs --name ${SITE_PREFIX}-sjf-site --location westeurope --resource-group ${SITE_PREFIX}-sjf-rg --plan ${SITE_PREFIX}-sjf-plan
     ```
 
     > [!NOTE]
