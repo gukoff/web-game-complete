@@ -11,9 +11,9 @@ jobs:
     strategy:
       matrix:
         folder: [01_hello_world_api, 02_templating, 03_in_memory_storage, 99_complete_app]
-      include:
-          - folder: 99_complete_app
-            tests: true
+        include:
+            - folder: 99_complete_app
+              tests: true
     container:
       image: mcr.microsoft.com/vscode/devcontainers/python:0-3.10-bullseye
     steps:
