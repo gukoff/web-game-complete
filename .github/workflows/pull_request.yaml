@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        folder: [01_hello_world_api, 02_templating, 03_in_memory_storage, 99_complete_app, 14]
+        folder: [01_hello_world_api, 02_templating, 03_in_memory_storage, 99_complete_app]
       include:
           - folder: 99_complete_app
             tests: true
