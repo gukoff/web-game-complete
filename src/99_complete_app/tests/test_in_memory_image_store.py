@@ -1,4 +1,5 @@
-from in_memory_storage import InMemoryStorage #pylint: disable = import-error
+from src.in_memory_storage import InMemoryStorage  # pylint: disable = import-error
+
 
 def test_get_random_image_when_empty_store():
     store = InMemoryStorage()
@@ -17,6 +18,7 @@ def test_get_image_description():
     store.add_guess((r"text/plain", b"image_content_1"), "cat")
     image_description = store.get_guess_secret(0)
     assert image_description == "cat"
+
 
 def test_get_image_description_empty_store():
     store1 = InMemoryStorage()

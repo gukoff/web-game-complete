@@ -8,6 +8,12 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        folder: [01_hello_world_api, 02_templating, 03_in_memory_storage, 99_complete_app, 14]
+      include:
+          - folder: 99_complete_app
+            tests: true
     container:
       image: mcr.microsoft.com/vscode/devcontainers/python:0-3.10-bullseye
     steps:
@@ -15,11 +21,16 @@ jobs:
 
       - name: Install dependencies
         run: | 
-          cd src/99_complete_app
-          pip install -r requirements.txt 
+          cd src/{{ matrix.folder }}
+          pip install -r requirements.txt .
 
       - name: Lint python
-        run: pylint --disable=C,R0801 src/ 
+        run: |
+          cd src/
+          pylint --disable=C,R0801 ./{{ matrix.folder }}
       
-      - name: Run tests
-        run: pytest ./src/
+      - if: ${{ matrix.tests }}
+        name: Run tests
+        run: | 
+          cd src/{{ matrix.folder }}
+          pytest 
