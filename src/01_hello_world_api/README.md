@@ -45,7 +45,7 @@ In the first stage we're going to create a python web API with [Flask](https://f
 3. In the root of the project (one level above `src`) create `app.py`
 
     ```py
-    from src.app import app  # pylint: disable=unused-import
+    from src.api import app  # pylint: disable=unused-import
     ```
 
 4. Run the API from the project root folder folder
