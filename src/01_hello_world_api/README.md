@@ -48,7 +48,7 @@ In the first stage we're going to create a python web API with [Flask](https://f
     from src.api import app  # pylint: disable=unused-import
     ```
 
-4. Run the API from the project root folder folder
+4. Run the API from the project root folder
 
     ```sh
     FLASK_DEBUG=1 flask run
