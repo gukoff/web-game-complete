@@ -21,16 +21,16 @@ jobs:
 
       - name: Install dependencies
         run: | 
-          cd src/{{ matrix.folder }}
+          cd src/${{ matrix.folder }}
           pip install -r requirements.txt .
 
       - name: Lint python
         run: |
           cd src/
-          pylint --disable=C,R0801 ./{{ matrix.folder }}
+          pylint --disable=C,R0801 ./${{ matrix.folder }}
       
       - if: ${{ matrix.tests }}
         name: Run tests
         run: | 
-          cd src/{{ matrix.folder }}
+          cd src/${{ matrix.folder }}
           pytest 
