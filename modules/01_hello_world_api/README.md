@@ -6,13 +6,13 @@ In the first stage we're going to create a python web API with [Flask](https://f
 
     >To be able to build the API, we first need to get the package of API we'll be using.
 
-    1. Create a `requirements.txt` file in the `src/` folder
+    1. Create a `requirements.txt` file in the root of the project folder
 
         ```sh
         touch requirements.txt
         ```
 
-    2. Modify the contents of the `requirements.txt` with:
+    2. Add the following content to `requirements.txt`:
 
         ```txt
         flask
@@ -24,9 +24,14 @@ In the first stage we're going to create a python web API with [Flask](https://f
         pip install -r requirements.txt
         ```
 
-2. Create the contents of the API
+2. Create the API
 
     1. Create an `api.py` in the `src/` folder file with the contents of
+
+        ```sh
+        cd src/
+        touch api.py
+        ```
 
         ```python
         from flask import Flask
