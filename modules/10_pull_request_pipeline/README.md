@@ -21,6 +21,7 @@ If your code is hosted on GitHub, a simple way to create a workflow is to use [G
     ```sh
     git add --all
     git commit -m "Initial commit"
+    git push
     ```
 
 3. Create a branch off your `main` branch in git
@@ -46,11 +47,11 @@ If your code is hosted on GitHub, a simple way to create a workflow is to use [G
     name: Pull request
 
     on:
-    pull_request:
+      pull_request:
         branches: [main]
 
     jobs:
-    build:
+      build:
         runs-on: ubuntu-latest
         container:
           image: mcr.microsoft.com/vscode/devcontainers/python:0-3.10-bullseye

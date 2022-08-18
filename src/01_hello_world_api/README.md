@@ -30,6 +30,7 @@ In the first stage we're going to create a python web API with [Flask](https://f
 
         ```python
         from flask import Flask
+        
         app = Flask(__name__)
 
 

@@ -39,12 +39,12 @@ def guess_result():
     result = request.form
     secret_description = database.get_guess_secret(session['selection'])
 
-    if (result['guess_secret'] == secret_description):
+    if result['guess_secret'] == secret_description:
         flash("You guessed right!")
         session['selection'] = None
         return render_template('home.html')
 
-    flash("You didn't guess! Try again!")
+    flash("You didn't guess right! Try again!")
     return render_template('guess.html', result=result)
 
 
