@@ -12,7 +12,7 @@ In the first stage we're going to create a python web API with [Flask](https://f
         touch requirements.txt
         ```
 
-    2. Modify the contents of the `requirements.txt` with:
+    2. Add the following content to `requirements.txt`:
 
         ```txt
         flask
@@ -24,7 +24,7 @@ In the first stage we're going to create a python web API with [Flask](https://f
         pip install -r requirements.txt
         ```
 
-2. Create the contents of the API
+2. Create the API
 
     1. Create an `api.py` in the `src/` folder file with the contents of
 
