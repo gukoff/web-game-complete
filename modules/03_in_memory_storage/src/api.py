@@ -9,56 +9,51 @@ app.secret_key = "f3cfe9ed8fae309f02079dbf"
 database = InMemoryStorage()
 
 
-@app.route('/')
-def home():
-    return render_template('home.html')
-
-
 @app.context_processor
 def inject_app_version():
     return dict(app_version=APP_VERSION)
 
 
-@app.route('/guess')
-def guess():
-    if database.get_guess_secret(session['selection']):
-        return render_template('guess.html')
+@app.route('/')
+def home():
+    return render_template('home.html')
 
-    img_id = database.get_random_id()
-    if img_id is None:
-        flash("no images uploaded yet")
+
+@app.route('/guess', methods=['GET'])
+def guess():
+    if 'secret_word_id' in session:
+        if database.get_secret_word_by_id(session['secret_word_id']) is not None:
+            return render_template('guess.html')
+
+    word_id = database.get_random_word_id()
+    if word_id is None:
+        flash("No words uploaded yet! Please upload at least one word to start guessing")
         return redirect("/")
 
-    session['selection'] = img_id
+    session['secret_word_id'] = word_id
 
     return render_template('guess.html')
 
 
-@app.route('/guess_result', methods=['POST'])
-def guess_result():
-    result = request.form
-    secret_description = database.get_guess_secret(session['selection'])
+@app.route('/make_a_guess', methods=['POST'])
+def make_a_guess():
+    secret_word = database.get_secret_word_by_id(session['secret_word_id'])
 
-    if result['guess_secret'] == secret_description:
-        flash("You guessed right!")
-        session['selection'] = None
-        return render_template('home.html')
+    if request.form['guessed_word'] == secret_word:
+        flash("You guessed right! Good job!")
+        del session['secret_word_id']
+        return redirect('/')
 
     flash("You didn't guess right! Try again!")
-    return render_template('guess.html', result=result)
+    return redirect('/guess')
 
 
-@app.route('/upload_image', methods=['GET', 'POST'])
-def upload_image():
-    result = request.form
-
+@app.route('/upload_word', methods=['GET', 'POST'])
+def upload_word():
     if request.method == "GET":
-        return render_template('upload_image.html', result=result)
+        return render_template('upload_word.html')
 
-    database.add_guess(request.form['secret'])
-    flash("Uploaded the secret " + request.form['secret'])
-    return redirect('/', code=302)
-
-
-if __name__ == '__main__':
-    app.run(debug=True)
+    secret_word = request.form['secret']
+    database.add_guess(secret_word)
+    flash("Uploaded the secret " + repr(secret_word))
+    return redirect('/')
