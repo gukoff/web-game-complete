@@ -110,3 +110,6 @@ In the second stage we're going to add two new pages `/guess` and `/upload_image
         ```
 
 4. Modify `guess.html` and `upload_images.html` to use the `base.html`
+
+
+TODO: add and explain app_version injection
