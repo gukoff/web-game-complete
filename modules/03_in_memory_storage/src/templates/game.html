@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+Please guess the secret word: <br/>
+
+<form action="/make_a_guess" method="POST">
+    <input type="text" name="guessed_word" placeholder="Your guess"/>
+    <input type="submit"/>
+</form>
+
+{% endblock %}
