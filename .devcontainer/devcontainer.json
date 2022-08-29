@@ -50,5 +50,8 @@
 		"docker-from-docker": "latest",
 		"git": "latest",
 		"azure-cli": "latest"
-	}
+	},
+	"mounts": [
+        "source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/home/vscode/.ssh,type=bind"
+    ]
 }
