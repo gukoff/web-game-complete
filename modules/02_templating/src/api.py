@@ -5,25 +5,31 @@ app = Flask(__name__)
 APP_VERSION = '0.0.1'
 
 
+@app.context_processor
+def inject_app_version():
+    return dict(app_version=APP_VERSION)
+
+
 @app.route('/')
 def home():
-    return render_template('home.html', app_version=APP_VERSION)
+    return render_template('home.html')
 
 
 @app.route('/home_without_base')
 def home_without_base():
-    return render_template('home_without_base.html', app_version=APP_VERSION)
+    return render_template('home_without_base.html')
 
 
-@app.route('/guess')
-def guess():
-    return render_template('guess.html', app_version=APP_VERSION)
+@app.route('/red')
+def red_page():
+    return render_template('page_red.html')
 
 
-@app.route('/upload_image')
-def upload_image():
-    return render_template('upload_image.html', app_version=APP_VERSION)
+@app.route('/yellow')
+def yellow_page():
+    return render_template('page_yellow.html')
 
 
-if __name__ == '__main__':
-    app.run(debug=True)
+@app.route('/green')
+def green_page():
+    return render_template('page_green.html')
