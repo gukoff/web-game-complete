@@ -24,16 +24,15 @@ code .
 ```
 
 The last step for local development is reopening the project inside the development container. Note that for this to work,
-Docker must be running on your computer and the VSCode extension [remote-containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
-must be installed in your VSCode instance.
+Docker must be running on your computer. To run Docker, simply open Docker Desktop.
 
 In VSCode open up the command palette and search for `Remote-Containers: Reopen in container`.
 
-![Picture of VSCode Command Palette with command reopen in container](containercommand.png 'Reopen in Container Command')
+![Picture of VSCode command palette with command reopen in container](containercommand.png 'Reopen in container command')
 
-Once the container is running the bottom left of your VSCode Window will show at the bottom left that the devcontainer is running:
+Once the container is running the bottom left of your VSCode window will show at the bottom left that the dev container is running:
 
-![VSCode Window shows running devcontainer](devcontainer.png 'Dev Container is running')
+![VSCode window shows running dev container](devcontainer.png 'Dev container is running')
 
 Now you are all set to start developing in your personal fork of the web-game repository. 
 
