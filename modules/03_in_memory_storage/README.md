@@ -378,7 +378,7 @@ Edge:
 Find a cookie with name "session" and a long value starting with "ey". It contains your encoded session data.
 
 Copy this value to https://www.base64decode.org/, and decode it. 
-In the decoded data, you should see the secret word that you can use to guess th word from the first try!
+In the decoded data, you should see the secret word that you can use to guess the word from the first try!
 
 #### 2. Hide the words
 
