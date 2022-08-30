@@ -32,7 +32,7 @@ In VSCode open up the command palette and search for `Remote-Containers: Reopen 
 
 Once the container is running the bottom left of your VSCode window will show at the bottom left that the dev container is running:
 
-![VSCode window shows running dev container](devcontainer.png 'Dev container is running')
+![VSCode window shows running dev container](./devcontainer.png 'Dev container is running')
 
 Now you are all set to start developing in your personal fork of the web-game repository. 
 
