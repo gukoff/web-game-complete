@@ -28,12 +28,7 @@ To do this, we'll need:
 
 Let's create a web page that will contain a text field for the word to upload and a button `submit`.
 
-Create a new file `upload_word.html` in the folder `templates`:
-
-```shell
-touch templates/upload_word.html
-```
-
+Create a new file `upload_word.html` in the folder `templates`.
 Inherit it from `base.html`, like we did it in the previous stage, and put the following form inside `block content`:
 
 ```html
@@ -260,21 +255,15 @@ app.secret_key = "f3cfe9ed8fae309f02079dbf"  # random string
 
 #### 2. Create the game page
 
-Let's create an HTML page `src/templates/game.html` with a form:
+Let's create an HTML page `src/templates/game.html` (inherited from `base.html`) with a form:
 
 ```html
-{% extends "base.html" %}
-
-{% block content %}
-
 Please guess the secret word: <br/>
 
 <form action="/make_a_guess" method="POST">
     <input type="text" name="guessed_word"/>
     <input type="submit"/>
 </form>
-
-{% endblock %}
 ```
 
 Serve it from an endpoint:
