@@ -30,7 +30,7 @@ In VSCode open up the command palette (Ctrl+Shift+P) and search for `Remote-Cont
 
 ![Picture of VSCode command palette with command reopen in container](./containercommand.png 'Reopen in container command')
 
-Once the container is running the bottom left of your VSCode window will show at the bottom left that the dev container is running:
+Once the container is running the bottom left of your VSCode window will show that the dev container is running:
 
 ![VSCode window shows running dev container](./devcontainer.png 'Dev container is running')
 
