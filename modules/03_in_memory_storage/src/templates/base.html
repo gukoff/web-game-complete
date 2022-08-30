@@ -24,8 +24,12 @@
     <div class="container">
       <h1>{{ title }}</h1>
       <hr>
+      <p style="text-align:center;">Hello, user</p>
+
       {% block content %}
       {% endblock %}
+      <p></p>
+      App Version: {{ app_version }}
     </div>
 
     <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

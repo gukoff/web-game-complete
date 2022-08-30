@@ -81,7 +81,3 @@ def upload_image():
         (file.content_type, file.stream.read()), request.form['secret'])
     flash("file uploaded with a secret " + request.form['secret'])
     return redirect('/', code=302)
-
-
-if __name__ == '__main__':
-    app.run(debug=True)

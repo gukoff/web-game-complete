@@ -23,7 +23,3 @@ def guess():
 @app.route('/upload_image')
 def upload_image():
     return render_template('upload_image.html', app_version=APP_VERSION)
-
-
-if __name__ == '__main__':
-    app.run(debug=True)
