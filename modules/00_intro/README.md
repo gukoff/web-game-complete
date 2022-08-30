@@ -11,7 +11,6 @@ To fork the web-game repository, follow [these instructions](https://docs.github
 
 **Note:** You do not have to set up the fork to sync with the original repository.
 
-
 Now, you have to clone the new repository which is under your github account to your computer. To do so,
 follow this [github documentation](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository).
 You may use either https or ssh cloning.
