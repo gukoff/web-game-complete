@@ -8,7 +8,7 @@ To get started, view the prerequisites below, then see the intro module [here](m
 
 ## Prerequisites
 
-1. Azure subscription, free tier: Create an account or use your existing account to sign up for a free azure subscription following the instructions on [this page](https://azure.microsoft.com/en-in/free/).
+1. Azure subscription, free tier: Create an account or use your existing account to sign up for a free azure subscription following the instructions on [this page](https://azure.microsoft.com/free/).
 
 2. Github Account: Create an account or use your existing account for [Github](https://github.com)
 
