@@ -26,7 +26,7 @@ code .
 The last step for local development is reopening the project inside the development container. Note that for this to work,
 Docker must be running on your computer. To run Docker, simply open Docker Desktop.
 
-In VSCode open up the command palette and search for `Remote-Containers: Reopen in container`.
+In VSCode open up the command palette (Ctrl+Shift+P) and search for `Remote-Containers: Reopen in container`.
 
 ![Picture of VSCode command palette with command reopen in container](./containercommand.png 'Reopen in container command')
 
