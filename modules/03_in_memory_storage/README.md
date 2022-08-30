@@ -56,7 +56,7 @@ def upload_word_page():
 Now start the app, and verify that you can see this form on the endpoint `/words`.
 
 > Most likely, the app will start on localhost:5000. In this case you can use this link to open the page:
-> [http://localhost:5000/words](http://locahost:5000)
+> [http://localhost:5000/words](http://locahost:5000/words)
 
 
 When you type in a word in the form and click "submit", your browser will try to
