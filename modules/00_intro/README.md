@@ -28,7 +28,7 @@ Docker must be running on your computer. To run Docker, simply open Docker Deskt
 
 In VSCode open up the command palette and search for `Remote-Containers: Reopen in container`.
 
-![Picture of VSCode command palette with command reopen in container](containercommand.png 'Reopen in container command')
+![Picture of VSCode command palette with command reopen in container](./containercommand.png 'Reopen in container command')
 
 Once the container is running the bottom left of your VSCode window will show at the bottom left that the dev container is running:
 
