@@ -18,7 +18,7 @@ You may use either https or ssh cloning.
 Once you have cloned the repository, open it in VSCode. You can either open VSCode manually and open the project from inside VSCode
 or you can use a terminal, navigate to the repository folder and use this command:
 
-```
+```sh
 code .
 ```
 
