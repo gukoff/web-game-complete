@@ -39,13 +39,13 @@ Inherit it from `base.html`, like we did it in the previous stage, and put the f
         <small id="secretHelp" class="form-text text-muted"></small>
     </div>
 
-	<button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 ```
 
 #### 2. Serve this HTML page on HTTP endpoint
 
-To let users open this page, add a new endpoint in `api.py`:
+To 'serve' this page to users, add a new endpoint in `api.py`:
 
 ```python
 @app.route('/words', methods=['GET'])
@@ -90,7 +90,7 @@ Verify that in the application log you see the uploaded word.
 
 #### 4. Give user feedback
 
-It's good to give the user know too, that the word was uploaded.
+It's good to let the user know that the word was uploaded too.
 
 Flask has a concept of flashing that we can use. In the logic of our endpoint we 
 would "flash" one or more messages, and these messages will become available 
@@ -220,7 +220,7 @@ and that the server now remembers all the words you've uploaded so far.
 The game of guessing words will go as follows:
 
 - the user visits a `/game` page;
-- our server chooses a secret word the user has to guess;
+- our server randomly chooses a secret word the user has to guess;
 - the user sends their guesses through a form until they get it right;
 - if they get it right, they are congratulated and redirected back to the main page.
 
@@ -236,7 +236,7 @@ from one request to another, and every visitor of our website has their own sess
 save the word to guess in the session, and it will stay the same throughout the game, until we decide
 to change it ourselves.
 
-> More about sessions - in [flask docs](flashttps://flask.palletsprojects.com/en/2.2.x/api/#sessions)
+> More about sessions - in [flask docs](https://flask.palletsprojects.com/en/2.2.x/api/#sessions)
 
 #### 1. Enable flask sessions
 
@@ -459,13 +459,14 @@ We've created a real mini-game. We learned how to:
 
 Now you can think how you can further improve this game! For example:
 
+- How to make the game more forgiving about spelling? I.e. when a secret word is "red", also accept the guess "Red".
+- How would you ensure the same word can't be added to the list of words more than once?
+- How to let the user know how close they are to the answer for them to not guess blindly? I.e. we can consider
+  a guess "rid" very close to "red" because they share many common letters. 
 - How to add hints to the game? I.e. a user would upload a word "red" with a hint "color of a tomato",
   and on the game page you'd display the hint.
-- How to make the game more forgiving to spelling? I.e. when a secret word is "red", also accept a guess "Red".
-- How to let user know how close they are to the answer for them to not guess blindly? I.e. we can consider
-  a guess "rid" very close to "red" because they share many common letters. 
+- How would you display the list of the wrong guesses the user has made so far in the current game?
 - How to restrict cheating even more? Word indexes in the session are more secure than the words  
   themselves, but eventually the player will learn what index corresponds to which word.
-
 
 TODO: Potential additional topics to cover: testing and debugging
