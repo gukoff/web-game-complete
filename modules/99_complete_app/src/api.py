@@ -23,24 +23,23 @@ def home():
 
 @app.route('/game', methods=['GET'])
 def game():
-    if 'secret_item_id' in session:
-        if database.has_index(session['secret_item_id']):
-            return render_template('game.html')  # continue the game
-
-    secret_item_id = database.get_random_item_index()
-    if secret_item_id is None:
+    if database.is_empty():
         flash("No images uploaded yet! Please upload at least one image to start guessing")
         return redirect("/")
 
-    session['secret_item_id'] = secret_item_id
+    if ('secret_item_id' not in session or
+        not database.has_index(session['secret_item_id'])
+    ):
+        # need to renew 'secret_item_id' in the session.
+        # it's either missing or left over from the old version of the app
+        session['secret_item_id'] = database.get_random_item_index()
 
-    return render_template('game.html')
+    return render_template('game.html')  # continue the game
 
 
-@app.route('/current_image')
-def guess_image():
-    secret_item_id = session['secret_item_id']
-    secret_item = database.get_item_by_index(secret_item_id)
+@app.route('/current_image', methods=['GET'])
+def current_image():
+    secret_item = database.get_item_by_index(session['secret_item_id'])
     return Response(secret_item.image_bytes, mimetype=secret_item.image_content_type)
 
 
