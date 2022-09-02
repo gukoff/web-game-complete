@@ -1,10 +1,13 @@
-from flask import Flask, Response, flash, render_template, request, redirect, session
-from .in_memory_storage import InMemoryStorage
+from flask import Flask, flash, render_template, request, redirect, session, Response
+from markupsafe import Markup
+
+from .in_memory_storage import InMemoryStorage, StorageItem
 
 APP_VERSION = '0.0.1'
 
 app = Flask(__name__)
 app.secret_key = "f3cfe9ed8fae309f02079dbf"
+
 database = InMemoryStorage()
 
 
@@ -18,66 +21,68 @@ def home():
     return render_template('home.html')
 
 
-@app.route('/guess')
-def guess():
-    if database.get_guess_secret(session['selection']):
-        return render_template('guess.html')
+@app.route('/game', methods=['GET'])
+def game():
+    if 'secret_item_id' in session:
+        if database.has_index(session['secret_item_id']):
+            return render_template('game.html')  # continue the game
 
-    img_id = database.get_random_id()
-    if img_id is None:
-        flash("no images uploaded yet")
+    secret_item_id = database.get_random_item_index()
+    if secret_item_id is None:
+        flash("No images uploaded yet! Please upload at least one image to start guessing")
         return redirect("/")
 
-    session['selection'] = img_id
+    session['secret_item_id'] = secret_item_id
 
-    return render_template('guess.html')
+    return render_template('game.html')
 
 
-@app.route('/guess_image_display')
+@app.route('/current_image')
 def guess_image():
-    try:
-        image_data = database.get_image_by_id(session['selection'])
-        if image_data is None:
-            return Response(status=401, response="no session set")
-        content_type, img_bytes = image_data
-        if (img_bytes is None or content_type is None):
-            raise Exception("Error fetching img_bytes or content_type")
-        return Response(img_bytes, mimetype=content_type)
-
-    except Exception as exp:  # pylint: disable=broad-except
-        return Response(status=500, response=exp.__str__())
+    secret_item_id = session['secret_item_id']
+    secret_item = database.get_item_by_index(secret_item_id)
+    return Response(secret_item.image_bytes, mimetype=secret_item.image_content_type)
 
 
-@app.route('/result_guess', methods=['POST'])
-def result_guess():
-    result = request.form
-    secret_description = database.get_guess_secret(
-        session['selection'])
-    if result['guess_secret'] == secret_description:
-        flash("You guessed right!")
-    else:
-        flash("You didn't guess right! Try again!")
-    return render_template('result_guess.html', result=result)
+@app.route('/make_a_guess', methods=['POST'])
+def make_a_guess():
+    secret_item_id = session['secret_item_id']
+    secret_item = database.get_item_by_index(secret_item_id)
+
+    if request.form['guessed_word'] == secret_item.secret_word:
+        flash(Markup("You guessed right! Good job! The secret word was <b>%s</b>" % secret_item.secret_word))
+        del session['secret_item_id']
+        return redirect('/')
+
+    flash("You didn't guess right! Try again!")
+    return redirect('/game')
 
 
-def secure_filename(path):
-    return path.replace("/", "_").replace(".", "_").replace("\\", "_").replace(" ", "_")
+@app.route('/images', methods=['GET'])
+def upload_image_page():
+    return render_template('images.html')
 
 
-@app.route('/upload_image', methods=['GET', 'POST'])
+@app.route('/upload_image', methods=['POST'])
 def upload_image():
-    result = request.form
+    secret_word = request.form['secretWord']
+    image_file = request.files['image']
 
-    if request.method == "GET":
-        return render_template('upload_image.html', result=result)
+    if not secret_word:
+        flash('No secret word added! Please try uploading again')
+        return redirect('/images')
 
-    file = request.files['image']
-    # If the user does not select a file, the browser submits an
-    # empty file without a filename.
-    if file.filename == '':
-        flash('No selected files')
-        return redirect(request.url)
-    database.add_guess(
-        (file.content_type, file.stream.read()), request.form['secret'])
-    flash("file uploaded with a secret " + request.form['secret'])
-    return redirect('/', code=302)
+    # If the user submits the form but doesn't select a file,
+    # the browser submits an empty file without a filename.
+    if not image_file.filename:
+        flash('No file selected! Please try uploading again')
+        return redirect('/images')
+
+    database.add(StorageItem(
+        image_bytes=image_file.stream.read(),
+        image_content_type=image_file.content_type,
+        secret_word=secret_word,
+    ))
+    flash("Uploaded image with secret word:" + repr(secret_word))
+    flash("All available secret words:: " + repr(database.get_all_secrets()))
+    return redirect('/images')
