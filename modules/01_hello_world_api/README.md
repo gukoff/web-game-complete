@@ -1,6 +1,10 @@
 # Hello world python web API
 
+## Goal
+
 In the first stage we're going to create a python web API with [Flask](https://flask.palletsprojects.com/en/2.2.x/quickstart/) that will return "Hello world" on the "/" page.
+
+## Tutorial
 
 1. Add and install `Flask` python package.
 
@@ -61,3 +65,5 @@ In the first stage we're going to create a python web API with [Flask](https://f
     ```
 
 5. Navigate to the url that the API is running at from the output of the previous command
+
+### [Return to Main Index](../../README.md)

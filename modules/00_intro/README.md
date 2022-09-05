@@ -1,7 +1,5 @@
 # Intro to the project
 
-TODO: write intro
-
 ## Setting up the environment
 
 The repository you will be working on is [web-game](https://github.com/MS-SJF-Projects/web-game). To set up your
@@ -35,4 +33,4 @@ Once the container is running the bottom left of your VSCode window will show th
 
 Now you are all set to start developing in your personal fork of the web-game repository. 
 
-TODO: presentation on devcontainers
+### [Return to Main Index](../../README.md)
