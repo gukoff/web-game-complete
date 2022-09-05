@@ -66,7 +66,7 @@ send it to the endpoint `/upload_word`. This is the endpoint we specified in the
 Because this endpoint doesn't exist yet, in the browser you'll see a "Not Found" page,
 and in the logs of the running application you'll see the following entry:
 
-```
+```txt
 127.0.0.1 - - [01/Jan/2022 11:12:34] "POST /upload_word HTTP/1.1" 404 -
 ```
 
@@ -228,8 +228,7 @@ Note that until the user wins the game, we need to remember the secret word that
 
 We did something similar when we were storing all uploaded words in the database. But this case is different:
 if multiple players visit our server, we want them to play with the same, common set of words, but their
-games shouldn't interfere. Each player should play their own game, they can't all share the secret word
-to guess like the share the pool of possible words.
+games shouldn't interfere. Each player should play their own game, with their own random secret word. 
 
 Here we'll make use a new concept - a "session". A session makes it possible to remember information 
 from one request to another, and every visitor of our website has their own session. We can
@@ -241,6 +240,11 @@ to change it ourselves.
 #### 1. Enable flask sessions
 
 Flask will create sessions only after we configure it some secret key.
+
+> This is a security measure - flask stores session data in the user's browser as a cookie 
+cryptographically signed with this secret key. Without a secret key, there would be 
+no signature, and without a signature, hackers could tamper with the session data.
+
 
 Add a secret key to your app:
 
