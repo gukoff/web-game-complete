@@ -45,19 +45,15 @@ Inherit it from `base.html`, like we did it in the previous stage, and put the f
 
 #### 2. Serve this HTML page on HTTP endpoint
 
-To 'serve' this page to users, add a new endpoint in `api.py`:
+Add a new endpoint on the route `/words` to `api.py`, like we did in the previous stages, and serve `words.html` from it.
 
-```python
-@app.route('/words', methods=['GET'])
-def upload_word_page():
-    return render_template('words.html')
+Also add a link to the `/words` page to `home.html`:
+
+```html
+<a href="./words">Upload Word</a>
 ```
 
-Now start the app, and verify that you can see this form on the endpoint `/words`.
-
-> Most likely, the app will start on localhost:5000. In this case you can use this link to open the page:
-> [http://localhost:5000/words](http://locahost:5000/words)
-
+Now start the app, and verify that you can see this form when you open the page `/words`.
 
 When you type in a word in the form and click "submit", your browser will try to
 send it to the endpoint `/upload_word`. This is the endpoint we specified in the
