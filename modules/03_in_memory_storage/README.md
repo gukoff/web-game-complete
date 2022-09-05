@@ -28,7 +28,7 @@ To do this, we'll need:
 
 Let's create a web page that will contain a text field for the word to upload and a button `submit`.
 
-Create a new file `upload_word.html` in the folder `templates`.
+Create a new file `words.html` in the folder `templates`.
 Inherit it from `base.html`, like we did it in the previous stage, and put the following form inside `block content`:
 
 ```html
