@@ -59,9 +59,9 @@ If your code is hosted on GitHub, a simple way to create a workflow is to use [G
           - uses: actions/checkout@v2
 
           - name: Install dependencies
-            run: | 
-            cd src/99_complete_app
-            pip install -r requirements.txt 
+            run: |
+            cd src/04_add_images
+            pip install -r requirements.txt
 
           - name: Run tests
             run: pytest ./src/
