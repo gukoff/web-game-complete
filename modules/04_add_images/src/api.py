@@ -36,11 +36,11 @@ def game():
 
     return render_template('game.html')  # continue the game
 
-
-@app.route('/current_image', methods=['GET'])
-def current_image():
-    secret_item = database.get_item_by_index(session['secret_item_id'])
-    return Response(secret_item.image_bytes, mimetype=secret_item.image_content_type)
+@app.route('/image', methods=['GET'])
+def get_image():
+    item_id = int(request.args['item_id'])
+    item = database.get_item_by_index(item_id)
+    return Response(item.image_bytes, mimetype=item.image_content_type)
 
 
 @app.route('/make_a_guess', methods=['POST'])
@@ -77,9 +77,11 @@ def upload_image():
         flash('No file selected! Please try uploading again')
         return redirect('/images')
 
+    image_bytes = image_file.stream.read()
+    image_content_type = image_file.content_type
     database.add(StorageItem(
-        image_bytes=image_file.stream.read(),
-        image_content_type=image_file.content_type,
+        image_bytes=image_bytes,
+        image_content_type=image_content_type,
         secret_word=secret_word,
     ))
     flash("Uploaded image with secret word:" + repr(secret_word))
