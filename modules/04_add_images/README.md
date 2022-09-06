@@ -65,7 +65,7 @@ It should say something like `Uploaded 829646 bytes of type image/jpeg`.
 
 #### Intro
 
-We will modify `InMemoryStorage` to be able to store mor than just words
+We will modify `InMemoryStorage` to be able to store more than just words
 Now that we need to store more than just words, it's time to make `InMemoryStorage` 
 more "generic". This means, make the storage less independent of the type of the stored
 items.
@@ -79,7 +79,8 @@ and  always store objects of a new class `StorageItem`.
 
 This `StorageItem` class will encapsulate whatever data we want to store: 
 before it could be a single word, now it will be `(word, image)`, later
-we might want to add more and more stuff to it.
+we might want to extend it, for example by adding more information to it 
+or changing the way we store the images.
 
 Such classes are called data-transfer-object (or DTOs), and a handy way
 to create them in Python are dataclasses. Create the following class
