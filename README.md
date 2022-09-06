@@ -13,7 +13,7 @@ Full list of all Sections / modules:
 - [📦 Templating](modules/02_templating/README.md)
 - [❇️ In memory storage](modules/03_in_memory_storage/README.md)
 - [🚀 Image upload](modules/04_add_images/README.md)
-- [🌐 Pull request](modules/10_pull_request_pipeline/)
+- [🌐 Pull request](modules/10_pull_request_pipeline/README.md)
 - [💻 Deploying to Azure](modules/11_deploying_to_azure/README.md)
 - [✨ Cosmos database](modules/12_cosmos_database/README.md)
 
