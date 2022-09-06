@@ -3,23 +3,27 @@
 ## Goal
 
 Implement an interactive web app where you can:
-- upload pairs (image + secret word) to the game database (word describes the image);
+- upload pairs (image, word), where the word describes the image, to the game database;
 - play a game of guessing the word from the image.
-
-In the previous stage, we created an app where we upload and store words.
-Now we will also upload images. Images need to be uploaded, stored,
-and shown to the user on the game page, therefore we'll extend the
-HTML upload form, endpoint that accepts data from it, storage format, 
-and the game page.
 
 ## Tutorial
 
 > In this tutorial we will assume that you've completed the previous tutorial
 and already have a game where you guess words but without an image hint.
 
+In the previous stage, we created a game with words. The difference is now we also have images. 
+Images need to be uploaded, stored, and shown to the user on the game page.
+Therefore, we'll need to extend functionality of the HTML upload form, 
+the endpoint that accepts form data, the storage format, and the game page.
+
 ### Part 1. Upload images
 
 #### Intro
+
+HTML forms are perfectly capable of uploading files, not only text.
+You've seen this many times: a button "Upload file" where you can
+attach a file from your local computer before form submission.
+This is exactly what we'll do to upload the images.
 
 #### 1. Add a second input to the form 
 
@@ -223,18 +227,114 @@ Add the following line to `game.html`:
 <img src="/image?item_id={{ session['secret_item_id'] }}" style="max-height:800px;max-width:800px;height:auto;width:auto;">
 ```
 
-(If the index value in your session is called something else than `secret_item_id`, 
-use the right name here)
+_(If the secret item index in your session is called something else than `secret_item_id`, 
+use the right name here)_
 
 Run the game, and check that you can see the image that describes this word on the game page.
 
-### Part 4. Unit tests
+The game is now complete!
 
-- TODO
+### Part 4. Unit tests for InMemoryStorage
+
+#### Intro
+
+In a professional setting, we always try to cover the code with automatic tests
+as much as possible.
+
+This has many benefits, including:
+- you don't need to restart the app and test it manually after every change, 
+  you can press a button and the tests will verify correctness in a matter of seconds;
+- somebody else can contribute to your project even if they don't understand it
+  fully - they can run tests and make sure they haven't broken anything;
+- you can configure GitHub to automatically run tests on every pull request and after
+  merging code to the main branch, ensuring correctness of the code in the repo.
+
+There are many types of tests. Now we will focus on the so-called **unit tests** - 
+fast tests with a small scope - and will test our InMemoryStorage.
+
+#### 1. Install testing framework
+
+We will use `pytest`, one of the popular testing frameworks for Python.
+
+To install it, add `pytest` to your `requirements.txt` file.
+Your IDE will most likely react to the change in this file and automatically 
+install pytest, but to be surem you can manually reinstall all dependencies
+by calling `pip install -r requirements.txt` in the project folder.
+
+#### 2. Create your first test 
+
+In the root of your project, where you have the `src` folder, create a new 
+folder `tests`. In this folder, create a file `test_in_memory_image_store.py`
+with a following function:
+
+```python
+from src.in_memory_storage import InMemoryStorage
+
+
+def test_is_empty():
+    storage = InMemoryStorage()  # create empty storage
+    assert storage.is_empty()  # verify it's empty when it's just created
+```
+
+Run this test by running `pytest` in the root folder of your project.
+You should see a report about a successful test run:
+
+```txt
+============================================================== test session starts ===============================================================
+platform linux -- Python 3.10.6, pytest-7.1.3, pluggy-1.0.0
+rootdir: /workspaces/my-web-game/
+collected 1 item                                                                                                                                 
+
+tests/test_in_memory_image_store.py .                                                                                                      [100%]
+
+=============================================================== 1 passed in 0.05s ================================================================
+```
+
+Notice how we didn't give pytest a direct path to our test, but it still found it.
+This is made possible by pytest's [test discovery](https://docs.pytest.org/en/7.1.x/explanation/goodpractices.html#conventions-for-python-test-discovery).
+As long as you prefix your test files and test functions with "test_", pytest
+will find them and consider them tests.
+
+#### 3. Add a second test
+
+To the same file, add another function:
+
+```python
+from src.in_memory_storage import StorageItem
+
+
+def test_get_random_index_when_one_item():
+    storage = InMemoryStorage()
+    storage.add(StorageItem(
+        image_content_type="text/plain",
+        image_bytes=b"not important",
+        secret_word="cat",
+    ))
+    # when there's only one item, the only index we can get from the method is 0
+    assert storage.get_random_item_index() == 0
+```
+
+Execute `pytest` again, verify that now it has successfully run more tests.
+
+#### 3. Write more tests!
+
+Now it's your turn! 
+
+Write tests for the rest of the methods of InMemoryStorage.
+It's very good to have multiple tests for the same method,
+if you can think of multiple scenarios that are worth testing.
 
 ### Part 5. Recap
+
+We've developed web-game where you can guess a word from the image.
+We learned how to:
+- upload files to the server from an HTML form;
+- work with uploaded files in flask
+- use `dataclass` to group multiple objects in the same "container" class;
+- test our code with `pytest`;
 
 Now you can think how you can further improve this game! For example:
 
 - How to ensure the uploaded files are actually images?
 - How to limit the acceptable image size?
+- How would you test the endpoints of the flask application? 
