@@ -1,6 +1,10 @@
 # Templating
 
+## Goal
+
 In the second stage we're going to add two new pages `/guess` and `/upload_image` and then we're going to modify the `/` to link to the new pages. To achieve this, we'll be using the [Jinja2 template engine](https://flask.palletsprojects.com/en/2.2.x/quickstart/#rendering-templates) that's built into Flask.
+
+## Tutorial
 
 1. Modify `/` endpoint to return html page with two links
 
@@ -113,3 +117,5 @@ In the second stage we're going to add two new pages `/guess` and `/upload_image
 
 
 TODO: add and explain app_version injection
+
+### [Return to Main Index](../../README.md)

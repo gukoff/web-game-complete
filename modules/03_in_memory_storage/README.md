@@ -3,6 +3,7 @@
 ## Goal
 
 Implement an interactive web app where you can:
+
 - upload words to the game dictionary;
 - play a game of guessing a word from the dictionary.
 
@@ -21,6 +22,7 @@ you can get pages from the server, but their content is always the same.
 Now it's time to **upload** data to the server! In our case, upload words to the dictionary.
 
 To do this, we'll need:
+
 1. a text field on the web page with a button "submit" (this will send data to the server)
 2. an endpoint on the server that would accept this data.
 
@@ -81,15 +83,15 @@ def upload_word():
     return redirect('/')  # redirect back to the main page
 ```
 
-Run the application, try uploading a word, and verify that the upload works now. 
-Verify that in the application log you see the uploaded word. 
+Run the application, try uploading a word, and verify that the upload works now.
+Verify that in the application log you see the uploaded word.
 
 #### 4. Give user feedback
 
 It's good to let the user know that the word was uploaded too.
 
-Flask has a concept of flashing that we can use. In the logic of our endpoint we 
-would "flash" one or more messages, and these messages will become available 
+Flask has a concept of flashing that we can use. In the logic of our endpoint we
+would "flash" one or more messages, and these messages will become available
 to us when rendering a template that we show to the user.
 
 > More detailed explanation of flashing you can find in the [documentation](https://flask.palletsprojects.com/en/2.2.x/patterns/flashing/).
@@ -155,6 +157,7 @@ class InMemoryStorage:
 ```
 
 We will be able to use it like this:
+
 ```python
 from src.in_memory_storage import InMemoryStorage
 
@@ -224,9 +227,9 @@ Note that until the user wins the game, we need to remember the secret word that
 
 We did something similar when we were storing all uploaded words in the database. But this case is different:
 if multiple players visit our server, we want them to play with the same, common set of words, but their
-games shouldn't interfere. Each player should play their own game, with their own random secret word. 
+games shouldn't interfere. Each player should play their own game, with their own random secret word.
 
-Here we'll make use a new concept - a "session". A session makes it possible to remember information 
+Here we'll make use a new concept - a "session". A session makes it possible to remember information
 from one request to another, and every visitor of our website has their own session. We can
 save the word to guess in the session, and it will stay the same throughout the game, until we decide
 to change it ourselves.
@@ -237,10 +240,9 @@ to change it ourselves.
 
 Flask will create sessions only after we configure it some secret key.
 
-> This is a security measure - flask stores session data in the user's browser as a cookie 
-cryptographically signed with this secret key. Without a secret key, there would be 
+> This is a security measure - flask stores session data in the user's browser as a cookie
+cryptographically signed with this secret key. Without a secret key, there would be
 no signature, and without a signature, hackers could tamper with the session data.
-
 
 Add a secret key to your app:
 
@@ -294,7 +296,7 @@ Start the app, verify the pages render well. (The game itself is not functional 
 
 #### 3. Choose secret word for the game
 
-When the game starts, we should choose a secret word, save it to user's session, 
+When the game starts, we should choose a secret word, save it to user's session,
 and only delete it from there when they have guessed the word correctly.
 
 Let's modify our endpoints accordingly:
@@ -345,7 +347,7 @@ Start the app, verify the game works!
 
 To make the game work, we saved the game context - the secret word - in the flask session.
 
-Flask stores sessions as signed cookies in the browser, and the users, if they want, can 
+Flask stores sessions as signed cookies in the browser, and the users, if they want, can
 find this cookie and read the data in the session!
 
 This is a security breach - the users can cheat and always guess the secret word from the first try.
@@ -353,7 +355,7 @@ Let's try to make it harder to do for them!
 
 #### 1. Demonstrate cheating
 
-Start the app, upload some words, and navigate to the `/game` page. 
+Start the app, upload some words, and navigate to the `/game` page.
 The server at this point should choose a word for you to guess and save it to the session.
 
 Open the cookies in your browser.
@@ -377,12 +379,12 @@ Edge:
 
 Find a cookie with name "session" and a long value starting with "ey". It contains your encoded session data.
 
-Copy this value to https://www.base64decode.org/, and decode it. 
+Copy this value to <https://www.base64decode.org/>, and decode it.
 In the decoded data, you should see the secret word that you can use to guess the word from the first try!
 
 #### 2. Hide the words
 
-Instead of giving the user a secret word in plain text, let's give them the _index_ of this word in our 
+Instead of giving the user a secret word in plain text, let's give them the _index_ of this word in our
 storage. Since they don't have direct access to the storage, they won't know the word from the index.
 
 Add new methods to our storage:
@@ -446,7 +448,7 @@ def make_a_guess():
 ```
 
 Run the service, play the game, verify that it works.
-Decode the session cookie again, verify that now it contains just the index instead of the secret word itself. 
+Decode the session cookie again, verify that now it contains just the index instead of the secret word itself.
 
 ### Part 5. Recap
 
@@ -455,14 +457,14 @@ We've created a real mini-game. We learned how to:
 - upload data from an HTML page to the server: using forms and POST requests;
 - save data in memory to share it between all users of the server as long as the server is alive;
 - save data to user sessions to share it between requests of _the same user_;
-- read data from the session in the browser to demonstrate that you never should store secrets in the Flask session. 
+- read data from the session in the browser to demonstrate that you never should store secrets in the Flask session.
 
 Now you can think how you can further improve this game! For example:
 
 - How to make the game more forgiving about spelling? I.e. when a secret word is "red", also accept the guess "Red".
 - How would you ensure the same word can't be added to the list of words more than once?
 - How to let the user know how close they are to the answer for them to not guess blindly? I.e. we can consider
-  a guess "rid" very close to "red" because they share many common letters. 
+  a guess "rid" very close to "red" because they share many common letters.
 - How to add hints to the game? I.e. a user would upload a word "red" with a hint "color of a tomato",
   and on the game page you'd display the hint.
 - How would you display the list of the wrong guesses the user has made so far in the current game?
@@ -470,3 +472,5 @@ Now you can think how you can further improve this game! For example:
   themselves, but eventually the player will learn what index corresponds to which word.
 
 TODO: Potential additional topics to cover: testing and debugging
+
+### [Return to Main Index](../../README.md)

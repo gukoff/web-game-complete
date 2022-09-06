@@ -4,7 +4,18 @@ This is a hands-on workshop where you will develop, from scratch, a browser game
 
 You will learn how to implement a web app like a professional developer: write code, build automation to test and deploy the project, manage secrets and security concerns. You will get familiar with Python and HTML (for coding), GitHub, Docker, NoSQL (database technology), and Azure (cloud provider to host our application and its resources).
 
-To get started, view the prerequisites below, then see the intro module [here](modules/00_intro/).
+To get started, view the prerequisites below, then see the intro module [here](modules/00_intro/README.md).
+
+Full list of all Sections / modules:
+
+- [⚒️ Intro](modules/00_intro/README.md)
+- [🚦 Hello world](modules/01_hello_world_api/README.md)
+- [📦 Templating](modules/02_templating/README.md)
+- [❇️ In memory storage](modules/03_in_memory_storage/README.md)
+- [🚀 Image upload](modules/04_add_images/README.md)
+- [🌐 Pull request](modules/10_pull_request_pipeline/README.md)
+- [💻 Deploying to Azure](modules/11_deploying_to_azure/README.md)
+- [✨ Cosmos database](modules/12_cosmos_database/README.md)
 
 ## Prerequisites
 
