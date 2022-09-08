@@ -37,8 +37,8 @@ Inherit it from `base.html`, like we did it in the previous stage, and put the f
 <form action = "/upload_word" method = "POST" enctype="multipart/form-data">
     <div class="form-group">
         <label for="secretId">Secret</label>
-        <input type="text" class="form-control" id="secretId" name="secretWord" aria-describedby="secretHelp" placeholder="Secret Word">
-        <small id="secretHelp" class="form-text text-muted"></small>
+        <input type="text" class="form-control" id="secretId" name="secretWord" aria-describedby="secretHelp" placeholder="Secret Word" required>
+        <small id="secretHelp" class="form-text text-muted">Secret word</small>
     </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>
@@ -263,7 +263,7 @@ Let's create an HTML page `src/templates/game.html` (inherited from `base.html`)
 Please guess the secret word: <br/>
 
 <form action="/make_a_guess" method="POST">
-    <input type="text" name="guessed_word"/>
+    <input type="text" name="guessed_word" required />
     <input type="submit"/>
 </form>
 ```
