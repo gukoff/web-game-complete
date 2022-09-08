@@ -10,10 +10,14 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        folder: [01_hello_world_api, 02_templating, 03_in_memory_storage, 04_add_images]
+        folder: [01_hello_world_api, 02_templating, 03_in_memory_storage, 04_add_images, 05_add_blob_storage]
         include:
-            - folder: 04_add_images
-              tests: true
+            - folder: 01_hello_world_api
+              no_tests: true
+            - folder: 02_templating
+              no_tests: true
+            - folder: 03_in_memory_storage
+              no_tests: true
     container:
       image: mcr.microsoft.com/vscode/devcontainers/python:0-3.10-bullseye
     steps:
@@ -29,7 +33,7 @@ jobs:
           cd modules/
           pylint --disable=C,R0801 ./${{ matrix.folder }}
       
-      - if: ${{ matrix.tests }}
+      - if: ${{ matrix.no_tests  == false }}
         name: Run tests
         run: | 
           cd modules/${{ matrix.folder }}
