@@ -2,6 +2,7 @@ import os
 import uuid
 from azure.storage.blob import BlobServiceClient, ContentSettings
 
+
 class BlobStorage: # pylint: disable=too-few-public-methods
     """
         Blob store to store secret words.
@@ -15,7 +16,7 @@ class BlobStorage: # pylint: disable=too-few-public-methods
         self.client = BlobServiceClient.from_connection_string(connection_string)
         self.container_name = 'images-to-guess'
         self.container_client = self.client.get_container_client(self.container_name)
-        if (not self.container_client.exists()):
+        if not self.container_client.exists():
             self.container_client.create_container(timeout=1000)
 
     def upload_image(self, image_bytes, content_type) -> str:

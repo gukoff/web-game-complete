@@ -7,6 +7,7 @@ class StorageItem:
     image_url: str
     secret_word: str
 
+
 class InMemoryStorage:
     """
     InMemory storage to store game items: secret words and hint images.
