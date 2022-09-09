@@ -73,7 +73,8 @@ Information on this can be found [here](https://docs.microsoft.com/en-us/azure/s
 
 #### 2. Modify the image retrieval
 
-Now in the api file we can modify get_image to redirect to the image_url like this:
+Now in the api file we can modify the endpoint that returns the image on the game page 
+to redirect to the blob storage url instead:
 `return redirect(item.image_url, code=302)`.
 
 ### Part 3. Testing
