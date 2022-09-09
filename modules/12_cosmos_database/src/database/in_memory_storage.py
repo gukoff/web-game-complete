@@ -11,27 +11,28 @@ class InMemoryStorage:
     def __init__(self):
         self.storage: list[StorageItem] = []
 
-    def add(self, item: StorageItem) -> None:
+    def add(self, item: StorageItem) -> str:
         """ Store a secret word with the image."""
         self.storage.append(item)
+        return str(len(self.storage) - 1)  # last index in the list
 
     def get_all_secrets(self) -> list[str]:
         """ Get all secret words saved so far. """
         return [item.secret_word for item in self.storage]
 
-    def has_index(self, index: int) -> bool:
+    def has_index(self, index: str) -> bool:
         """ Does the database contain the given index? """
-        return 0 <= index < len(self.storage)
+        return index.isnumeric() and 0 <= int(index) < len(self.storage)
 
-    def get_random_item_index(self) -> int:
+    def get_random_item_index(self) -> str:
         """ Get an index of a random secret image."""
-        return random.randint(0, len(self.storage) - 1)
+        return str(random.randint(0, len(self.storage) - 1))
 
-    def get_item_by_index(self, index: int) -> StorageItem:
+    def get_item_by_index(self, index: str) -> StorageItem:
         """
         Return the item by the index from the database.
         """
-        return self.storage[index]
+        return self.storage[int(index)]
 
     def is_empty(self) -> bool:
         """
