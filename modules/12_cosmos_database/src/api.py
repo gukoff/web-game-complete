@@ -2,6 +2,7 @@ from flask import Flask, flash, render_template, request, redirect, session
 from markupsafe import Markup
 
 from .blob_storage import BlobStorage
+from .database.cosmos_storage import CosmosStorage
 from .database.in_memory_storage import InMemoryStorage
 from .database.storage_item import StorageItem
 
@@ -10,8 +11,10 @@ APP_VERSION = '0.0.1'
 app = Flask(__name__)
 app.secret_key = "f3cfe9ed8fae309f02079dbf"
 
-database = InMemoryStorage()
+# database = InMemoryStorage()
+database = CosmosStorage.from_env()
 image_storage : BlobStorage = BlobStorage()
+
 
 @app.context_processor
 def inject_app_version():
@@ -38,11 +41,13 @@ def game():
 
     return render_template('game.html')  # continue the game
 
+
 @app.route('/image', methods=['GET'])
 def get_image():
-    item_id = int(request.args['item_id'])
+    item_id = request.args['item_id']
     item = database.get_item_by_index(item_id)
     return redirect(item.image_url, code=302)
+
 
 @app.route('/make_a_guess', methods=['POST'])
 def make_a_guess():
