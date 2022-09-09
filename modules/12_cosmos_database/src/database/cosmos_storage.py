@@ -9,7 +9,7 @@ from azure.cosmos import exceptions, CosmosClient, PartitionKey, ContainerProxy
 
 class CosmosStorage:
     """
-    InMemory database to store game items: secret words and hint images.
+    Cosmos DB database to store game items: secret words and hint images.
     """
 
     def __init__(self, container: ContainerProxy):
