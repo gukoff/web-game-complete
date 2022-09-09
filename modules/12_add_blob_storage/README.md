@@ -6,8 +6,7 @@ Modify the app to add persistent storage for images.
 
 ## Tutorial
 
-> In this tutorial we will assume that you've completed the previous tutorial
-and already have a game where you get an image and you have to guess a word that describes it.
+> In this tutorial we will assume that you've completed the previous tutorial and already have a game where you get an image and you have to guess a word that describes it.
 
 Now, we'll change the image storing functionality and upload the images to the cloud.
 Then images will be served from the cloud and won't take precious memory space on our server.
@@ -16,9 +15,8 @@ Then images will be served from the cloud and won't take precious memory space o
 
 #### Intro
 
-[Azure Blob Storage](https://docs.microsoft.com/azure/storage/blobs/) is Microsoft's object storage solution
- for the cloud. We will use it to store our images and also to get them from there using a URL. It's advisable that
- you read about this service and familiarise yourself with the concepts of a storage account, container and blob.
+[Azure Blob Storage](https://docs.microsoft.com/azure/storage/blobs/) is Microsoft's object storage solution for the cloud.
+We will use it to store our images and also to get them from there using a URL. It's advisable that you read about this service and familiarize yourself with the concepts of a storage account, container and blob.
 
 #### 1. Create a storage account in your own subscription where you will save the images
 
@@ -27,13 +25,16 @@ The required steps are provided [here](https://docs.microsoft.com/azure/storage/
 
 #### 2. Save and expose the storage account information
 
-In order to connect to the storage account from our code, we will need the name of the storage account and a
- storage account key that can be found in the Access Keys of the storage account like shown
- [here](https://docs.microsoft.com/azure/storage/blobs/storage-quickstart-blobs-python#copy-your-credentials-from-the-azure-portal).
-Don't copy the connection string, copy the key instead, as we will use this to build the connection string
- and also to get the URL for each uploaded file.
-These should be added to two environment variables: AZURE_STORAGE_ACCOUNT_NAME and AZURE_STORAGE_ACCOUNT_KEY.
-An example on how to add an environment variable is [here](https://docs.microsoft.com/azure/storage/blobs/storage-quickstart-blobs-python#configure-your-storage-connection-string).
+In order to connect to the storage account from our code, we will need the name of the storage account and a storage account key.
+That can be found in the Access Keys of the storage account like shown [here](https://docs.microsoft.com/azure/storage/blobs/storage-quickstart-blobs-python#copy-your-credentials-from-the-azure-portal).
+Don't copy the connection string, copy the key instead, as we will use this to build the connection string and also to get the URL for each uploaded file.
+
+These should be added to two environment variables: `AZURE_STORAGE_ACCOUNT_NAME` and `AZURE_STORAGE_ACCOUNT_KEY`, in the terminal where your application is run:
+
+```sh
+export AZURE_STORAGE_ACCOUNT_NAME=<replace_with_your_storage_account_name>
+export AZURE_STORAGE_ACCOUNT_KEY=<replace_with_your_storage_account_key>
+```
 
 #### Modify the application code to store data in the storage account
 
@@ -54,7 +55,7 @@ class StorageItem:
 Don't forget to modify the unit tests to use this new structure.
 
 When we upload the image, in `def upload_image()` we will add the code that uploads the image in the storage account.
-Create a new `BlobStorage` class in a new file blob_storage.py. This class we'll use to upload images to blob storage.
+Create a new `BlobStorage` class in a new file `blob_storage.py`. This class we'll use to upload images to blob storage.
 
 An example on how to upload blobs to a container can be found [here](https://docs.microsoft.com/azure/storage/blobs/storage-quickstart-blobs-python?#upload-blobs-to-a-container).
 The container should also be created in the code.
@@ -62,8 +63,7 @@ Create the method to upload an image and save its url to our in-memory storage:
 
 `def upload_image(self, image_bytes, content_type) -> str:`
 
-Now run the app, upload an image, and verify on [portal.azure.com](https://portal.azure.com) 
-that a blob is created in the container.
+Now run the app, upload an image, and verify on [portal.azure.com](https://portal.azure.com) that a blob is created in the container.
 
 ### Part 2. Display images for the storage account
 
@@ -113,7 +113,7 @@ def test_blob_storage(monkeypatch):
 We've created a storage account and added code that creates a container in it and then  stored the images in blob.
 We learned how to:
 
-- create an Azure service like a storage account. 
+- create an Azure service like a storage account.
 - access it in the code using Python
 
 Now you can think how you can further improve this game! For example:
