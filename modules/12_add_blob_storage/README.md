@@ -35,7 +35,7 @@ Don't copy the connection string, copy the key instead, as we will use this to b
 These should be added to two environment variables: AZURE_STORAGE_ACCOUNT_NAME and AZURE_STORAGE_ACCOUNT_KEY.
 An example on how to add an environment variable is [here](https://docs.microsoft.com/azure/storage/blobs/storage-quickstart-blobs-python#configure-your-storage-connection-string).
 
-#### Modify the application code to store data into the storage account
+#### Modify the application code to store data in the storage account
 
 Information on how to manage blobs with a storage account using Python is found [here](https://docs.microsoft.com/azure/storage/blobs/storage-quickstart-blobs-python)
 We first need to add azure-storage-blob to the requirements.txt file and install the new dependency by using pip:
