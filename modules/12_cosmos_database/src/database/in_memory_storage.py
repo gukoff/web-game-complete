@@ -1,11 +1,11 @@
 import random
 
-from src.storage.storage_item import StorageItem
+from src.database.storage_item import StorageItem
 
 
 class InMemoryStorage:
     """
-    InMemory storage to store game items: secret words and hint images.
+    InMemory database to store game items: secret words and hint images.
     """
 
     def __init__(self):
@@ -20,7 +20,7 @@ class InMemoryStorage:
         return [item.secret_word for item in self.storage]
 
     def has_index(self, index: int) -> bool:
-        """ Does the storage contain the given index? """
+        """ Does the database contain the given index? """
         return 0 <= index < len(self.storage)
 
     def get_random_item_index(self) -> int:
@@ -29,12 +29,12 @@ class InMemoryStorage:
 
     def get_item_by_index(self, index: int) -> StorageItem:
         """
-        Return the item by the index from the storage.
+        Return the item by the index from the database.
         """
         return self.storage[index]
 
     def is_empty(self) -> bool:
         """
-        Is the storage empty?
+        Is the database empty?
         """
         return not self.storage

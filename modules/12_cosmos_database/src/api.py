@@ -1,8 +1,9 @@
-from flask import Flask, flash, render_template, request, redirect, session, Response
+from flask import Flask, flash, render_template, request, redirect, session
 from markupsafe import Markup
 
-from src.storage.in_memory_storage import InMemoryStorage
-from src.storage.storage_item import StorageItem
+from .blob_storage import BlobStorage
+from .database.in_memory_storage import InMemoryStorage
+from .database.storage_item import StorageItem
 
 APP_VERSION = '0.0.1'
 
@@ -10,7 +11,7 @@ app = Flask(__name__)
 app.secret_key = "f3cfe9ed8fae309f02079dbf"
 
 database = InMemoryStorage()
-
+image_storage : BlobStorage = BlobStorage()
 
 @app.context_processor
 def inject_app_version():
@@ -41,8 +42,7 @@ def game():
 def get_image():
     item_id = int(request.args['item_id'])
     item = database.get_item_by_index(item_id)
-    return Response(item.image_bytes, mimetype=item.image_content_type)
-
+    return redirect(item.image_url, code=302)
 
 @app.route('/make_a_guess', methods=['POST'])
 def make_a_guess():
@@ -78,13 +78,12 @@ def upload_image():
         flash('No file selected! Please try uploading again')
         return redirect('/images')
 
-    image_bytes = image_file.stream.read()
-    image_content_type = image_file.content_type
+    image_url = image_storage.upload_image(image_file.stream.read(),  image_file.content_type)
     database.add(StorageItem(
-        image_bytes=image_bytes,
-        image_content_type=image_content_type,
+        image_url,
         secret_word=secret_word,
     ))
+    flash("Uploaded image at: "+ image_url)
     flash("Uploaded image with secret word:" + repr(secret_word))
-    flash("All available secret words:: " + repr(database.get_all_secrets()))
+    flash("All available secret words: " + repr(database.get_all_secrets()))
     return redirect('/images')

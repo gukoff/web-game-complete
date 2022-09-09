@@ -1,2 +1,4 @@
 flask
 pytest
+azure-cosmos
+azure-storage-blob
