@@ -1,12 +1,6 @@
 import random
-from dataclasses import dataclass
 
-
-@dataclass(frozen=True)
-class StorageItem:
-    image_bytes: bytes
-    image_content_type: str
-    secret_word: str
+from src.storage.storage_item import StorageItem
 
 
 class InMemoryStorage:

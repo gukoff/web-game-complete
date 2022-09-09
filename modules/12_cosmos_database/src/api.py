@@ -1,7 +1,8 @@
 from flask import Flask, flash, render_template, request, redirect, session, Response
 from markupsafe import Markup
 
-from .in_memory_storage import InMemoryStorage, StorageItem
+from src.storage.in_memory_storage import InMemoryStorage
+from src.storage.storage_item import StorageItem
 
 APP_VERSION = '0.0.1'
 

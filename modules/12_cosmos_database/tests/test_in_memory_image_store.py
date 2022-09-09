@@ -1,4 +1,5 @@
-from src.in_memory_storage import InMemoryStorage, StorageItem  # pylint: disable = import-error
+from src.storage.in_memory_storage import InMemoryStorage
+from src.storage.storage_item import StorageItem
 
 
 def test_is_empty():
