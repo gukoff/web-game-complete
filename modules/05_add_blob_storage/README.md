@@ -16,7 +16,7 @@ Then images will be served from the cloud and won't take precious memory space o
 #### Intro
 
 [Azure Blob Storage](https://docs.microsoft.com/azure/storage/blobs/) is Microsoft's object storage solution
- for the cloud. We will use this to store our image and also to get them from there using an URL. It's advisable that
+ for the cloud. We will use it to store our images and also to get them from there using a URL. It's advisable that
  you read about this service and familiarise yourself with the concepts of a storage account, container and blob.
 
 #### 1. Create a storage account in your own subscription where you will save the images
