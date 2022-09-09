@@ -61,7 +61,8 @@ Create the method to upload an image and save the url to our in memory storage:
 
 `def upload_image(self, image_bytes, content_type) -> str:`
 
-Now run the app, upload an image, and verify then that a blob is created into the container.
+Now run the app, upload an image, and verify on [portal.azure.com](https://portal.azure.com) 
+that a blob is created in the container.
 
 ### Part 2. Display images for the storage account
 
