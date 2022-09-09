@@ -58,7 +58,7 @@ Create a new `BlobStorage` class in a new file blob_storage.py. This class we'll
 
 An example on how to upload blobs to a container can be found [here](https://docs.microsoft.com/azure/storage/blobs/storage-quickstart-blobs-python?#upload-blobs-to-a-container).
 The container should also be created in the code.
-Create the method to upload an image and save the url to our in memory storage:
+Create the method to upload an image and save its url to our in-memory storage:
 
 `def upload_image(self, image_bytes, content_type) -> str:`
 
