@@ -8,7 +8,8 @@ Modify the app to add persistent storage for images.
 
 > In this tutorial we will assume that you've completed the previous tutorial
 and already have a game where you get an image and you have to guess a word that describes it.
-Now, we'll need to change the image storing functionality and upload the images to the cloud.
+
+Now, we'll change the image storing functionality and upload the images to the cloud.
 Then images will be served from the cloud and won't take precious memory space on our server.
 
 ### Part 1. Create the storage account
