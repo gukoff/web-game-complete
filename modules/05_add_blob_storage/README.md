@@ -53,7 +53,7 @@ class StorageItem:
 Don't forget to modify the unit tests to use this new structure.
 
 When we upload the image, in `def upload_image()` we will add the code that uploads the image in the storage account.
-You can create a new class blob_storage.py that will define how we upload the image.
+Create a new `BlobStorage` class in a new file blob_storage.py. This class we'll use to upload images to blob storage.
 
 An example on how to upload blobs to a container can be found [here](https://docs.microsoft.com/azure/storage/blobs/storage-quickstart-blobs-python?#upload-blobs-to-a-container).
 The container should also be created in the code.
