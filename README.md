@@ -15,7 +15,8 @@ Full list of all Sections / modules:
 - [🚀 Image upload](modules/04_add_images/README.md)
 - [🌐 Pull request](modules/10_pull_request_pipeline/README.md)
 - [💻 Deploying to Azure](modules/11_deploying_to_azure/README.md)
-- [✨ Cosmos database](modules/12_cosmos_database/README.md)
+- [📁 Blob storage](modules/12_add_blob_storage/README.md)
+- [✨ Cosmos database](modules/13_cosmos_database/README.md)
 
 ## Prerequisites
 
