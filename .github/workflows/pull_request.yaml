@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        folder: [01_hello_world_api, 02_templating, 03_in_memory_storage, 04_add_images, 12_add_blob_storage]
+        folder: [01_hello_world_api, 02_templating, 03_in_memory_storage, 04_add_images, 12_add_blob_storage,  13_cosmos_database]
         include:
             - folder: 01_hello_world_api
               no_tests: true
