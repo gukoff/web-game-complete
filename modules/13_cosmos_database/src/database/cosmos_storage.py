@@ -69,7 +69,7 @@ class CosmosStorage:
         try:
             self.container.read_item(index, partition_key=index)
             return True
-        except Exception:
+        except exceptions.CosmosHttpResponseError:
             return False
 
     def get_random_item_index(self) -> str:
