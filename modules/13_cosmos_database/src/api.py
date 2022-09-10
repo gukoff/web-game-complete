@@ -3,7 +3,6 @@ from markupsafe import Markup
 
 from .blob_storage import BlobStorage
 from .database.cosmos_storage import CosmosStorage
-from .database.in_memory_storage import InMemoryStorage
 from .database.storage_item import StorageItem
 
 APP_VERSION = '0.0.1'
@@ -11,9 +10,8 @@ APP_VERSION = '0.0.1'
 app = Flask(__name__)
 app.secret_key = "f3cfe9ed8fae309f02079dbf"
 
-# database = InMemoryStorage()
 database = CosmosStorage.from_env()
-image_storage : BlobStorage = BlobStorage()
+image_storage: BlobStorage = BlobStorage()
 
 
 @app.context_processor
@@ -34,7 +32,7 @@ def game():
 
     if ('secret_item_id' not in session or
         not database.has_index(session['secret_item_id'])
-    ):
+        ):
         # need to renew 'secret_item_id' in the session.
         # it's either missing or left over from the old version of the app
         session['secret_item_id'] = database.get_random_item_index()
@@ -55,7 +53,8 @@ def make_a_guess():
     secret_item = database.get_item_by_index(secret_item_id)
 
     if request.form['guessed_word'] == secret_item.secret_word:
-        flash(Markup("You guessed right! Good job! The secret word was <b>%s</b>" % secret_item.secret_word))
+        flash(Markup("You guessed right! Good job! The secret word was <b>%s</b>" %
+              secret_item.secret_word))
         del session['secret_item_id']
         return redirect('/')
 
@@ -83,12 +82,13 @@ def upload_image():
         flash('No file selected! Please try uploading again')
         return redirect('/images')
 
-    image_url = image_storage.upload_image(image_file.stream.read(),  image_file.content_type)
+    image_url = image_storage.upload_image(
+        image_file.stream.read(),  image_file.content_type)
     database.add(StorageItem(
         image_url,
         secret_word=secret_word,
     ))
-    flash("Uploaded image at: "+ image_url)
+    flash("Uploaded image at: " + image_url)
     flash("Uploaded image with secret word:" + repr(secret_word))
     flash("All available secret words: " + repr(database.get_all_secrets()))
     return redirect('/images')
